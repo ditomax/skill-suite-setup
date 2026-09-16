@@ -2,7 +2,7 @@
 
 **Builds customer versions of the DMBG skill suite — idea → maquette → build — as `start.md` + one ZIP.**
 
-Version 0.1 · September 2026 · DMBG · https://github.com/ditomax/skill-suite-setup
+Version: see `VERSION` · September 2026 · DMBG · https://github.com/ditomax/skill-suite-setup
 
 This is the maintainers' tool. It takes the three skillset repos ([idea](https://github.com/ditomax/idea), [maquette](https://github.com/ditomax/maquette), [build](https://github.com/ditomax/build)) at pinned versions, adds a customer profile produced in a guided dialogue, and renders a delivery that the customer's IT unzips into a project folder. Nothing is installed or fetched at the customer; the agent reads `planning/AGENTS.md` / `planning/CLAUDE.md` when the folder is opened and acts as the right Director. Anyone who knows the suite may use this repo to tailor their own version.
 
@@ -60,7 +60,7 @@ hooks/pre-commit    the guard as a git hook — copy of the one in each skillset
 PROFILE.md          the profile specification the skillsets read
 compat.md           version triples known to work together, with contract versions H1/H2
 skills/setup/       the tailoring dialogue
-templates/          root-AGENTS.md · planning-AGENTS.md · start.en.md · start.de.md · customer.yaml · profile/*.md · prompt-idea-collect.md
+templates/          root-AGENTS.md · planning-AGENTS.md · planning-pointer-AGENTS.md · start.en.md · start.de.md · customer.yaml · profile/*.md · prompt-idea-collect.md
 customers/          gitignored — one folder per customer
 examples/example/   a fictitious customer (Example GmbH) — the reference for a filled profile
 AGENTS.md CLAUDE.md bootstrap for an agent working in this repo
