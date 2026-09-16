@@ -9,7 +9,11 @@ This is the maintainers' tool. It takes the three skillset repos ([idea](https:/
 ## Usage
 
 ```
-git clone …/idea …/maquette …/build …/skill-suite-setup   # side by side (the dev layout), or pass --suites DIR
+git clone https://github.com/ditomax/idea
+git clone https://github.com/ditomax/maquette
+git clone https://github.com/ditomax/build
+git clone https://github.com/ditomax/skill-suite-setup
+# all four side by side in one parent folder (the dev layout) — or pass --suites DIR to point elsewhere
 cd skill-suite-setup
 python3 setup.py new acme --code ACM --language de          # scaffold customers/acme/
 # run the tailoring dialogue (skills/setup/SKILL.md) or edit customers/acme/profile/*.md by hand

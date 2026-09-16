@@ -1,5 +1,8 @@
 # Changelog — skill-suite-setup
 
+## 0.1.2 — 2026-09-16
+README fix: "Usage" example was a single `git clone` call with four ellipsis placeholders as if it were one literal, copy-pasteable command — not valid git syntax and not runnable as written. Replaced with four separate `git clone` commands using the real repo URLs. No contract change.
+
 ## 0.1.1 — 2026-09-16
 README fixes: version line now points to `VERSION` (matching idea/maquette/build) instead of a hardcoded "0.1" string; `templates/` listing now includes `planning-pointer-AGENTS.md`. No contract change.
 
