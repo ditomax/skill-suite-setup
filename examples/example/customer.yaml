@@ -1,0 +1,12 @@
+name: example
+code: EXG
+language: de
+skillsets: [idea, maquette]
+platform: [cowork, chatgpt-codex]
+recipient: IT-Leitung Example GmbH
+contact: Jane Doe, jane@example.com
+build: 1
+versions:
+  idea: 0.1.3
+  maquette: 0.5.2
+  build: 0.1.3

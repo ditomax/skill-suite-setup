@@ -1,0 +1,7 @@
+# customer material never goes into the public repo
+customers/*
+!customers/README.md
+dist/*
+!dist/.gitkeep
+.DS_Store
+__pycache__/

@@ -1,0 +1,13 @@
+# customer.yaml — structured part of a customer version. Prose goes into profile/*.md.
+name: {{customer}}
+code: {{code}}                 # 2–4 letters, prefixes every idea card ID
+language: {{language}}         # document language: en | de
+skillsets: [idea, maquette, build]
+platform: [cowork]             # cowork | chatgpt-codex | vibe-cli | other — decides the wording of start.md
+recipient: {{recipient}}       # who receives the ZIP
+contact: {{contact}}           # who the customer asks — appears in start.md and planning/AGENTS.md
+build: 0                       # bumped by setup.py build
+versions:
+  idea: {{v_idea}}
+  maquette: {{v_maquette}}
+  build: {{v_build}}
