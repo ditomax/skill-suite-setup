@@ -1,5 +1,8 @@
 # Changelog — skill-suite-setup
 
+## 0.1.6 — 2026-09-17
+`release.py`: the work-folder check no longer counts Finder/editor droppings (`.DS_Store`, `Thumbs.db`, `desktop.ini`, `._*`, `*.swp`/`*.swo`) as stray files — a `.DS_Store` in `maquettes/` aborted the v0.6.1 release although git never tracked it. Real files in the work folder still refuse the release. `.gitignore` here gained the `Thumbs.db` / `*.swp` lines the skillsets already had. No contract change.
+
 ## 0.1.5 — 2026-09-17
 compat.md: new top row idea 0.2.2 · maquette 0.6.1 · build 0.1.6 (idea fixes from run-03). examples/example pinned to it.
 Prompt file (`setup.py prompt … idea-collect`) reworked for the mail-only collection: how-to line in the customer language (open → copy → paste → type **start**), explicit start trigger, solo mode, conversation rules inlined (RULES.md is not in the file), address form from the new `customer.yaml` key `address` (du | sie, default du), personal-data reminder, provisional card IDs, closing with all cards and the reply-mail sentence.

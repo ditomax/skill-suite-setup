@@ -14,6 +14,7 @@ from setup import SHIP, ship_files, die
 
 HERE = Path(__file__).resolve().parent
 STANDALONE = {"AGENTS.md", "CLAUDE.md", "START.md", ".gitignore", "profile/README.md"}
+OS_NOISE = {".DS_Store", "Thumbs.db", "desktop.ini"}   # editor/Finder droppings — never customer material, never shipped
 WORK = {"idea": "ideas", "maquette": "maquettes", "build": "builds"}
 
 def main():
@@ -23,7 +24,9 @@ def main():
     base = (Path(a.suites).expanduser() if a.suites else HERE.parent) / a.skillset
     version = (base / "VERSION").read_text().strip()
     work = base / WORK[a.skillset]
-    stray = [f for f in work.rglob("*") if f.is_file() and f.name != ".gitkeep"] if work.exists() else []
+    def noise(f: Path) -> bool:
+        return f.name in OS_NOISE or f.suffix in {".swp", ".swo"} or f.name.startswith("._")
+    stray = [f for f in work.rglob("*") if f.is_file() and f.name != ".gitkeep" and not noise(f)] if work.exists() else []
     if stray:
         die(f"work folder {work.name}/ is not empty ({len(stray)} files) — test runs belong under tests/, never in the dev copy")
     tracked = set(subprocess.run(["git", "ls-files"], cwd=base, capture_output=True, text=True, check=True).stdout.split())
