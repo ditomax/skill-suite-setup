@@ -2,8 +2,8 @@
 name: setup
 version: "0.1"
 description: >
-  Tailoring dialogue of skill-suite-setup — produces a customer version of the DMBG
-  skill suite (idea → maquette → build): customer.yaml plus the profile files that
+  Tailoring dialogue of skill-suite-setup — produces a customer version of the skill
+  suite (idea → maquette → build): customer.yaml plus the profile files that
   setup.py builds into start.md and a ZIP. Trigger on /setup, "new customer version",
   "tailor the suite for <customer>", or when editing an existing customer profile.
   Internal tool for the suite maintainers; runs in the skill-suite-setup repo or in a

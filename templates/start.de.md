@@ -1,4 +1,4 @@
-# Start — DMBG Skill-Suite für {{customer}}
+# Start — Skill-Suite für {{customer}}
 
 Sie haben eine ZIP-Datei und diese Seite erhalten. Das ZIP enthält eine Planungsstruktur und die KI-Skill-Suite **{{skillsets_list}}** (die genauen Versionen stehen nach dem Entpacken in `planning/suite/VERSION`). Es wird nichts installiert: es sind Textdateien, die Ihre KI-Anwendung liest, sobald Sie den Ordner öffnen.
 

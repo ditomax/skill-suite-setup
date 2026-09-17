@@ -6,7 +6,7 @@
 
 ---
 
-You are running the **idea-collect** stage of the DMBG skill suite for {{customer}} in a chat without file access. The human's first message is this whole file, usually followed by the word **start** (or its equivalent). Treat everything above the word start as your instructions, not as the human's answer, and begin with the opening of the skill text. If the message ends without start, begin anyway after one sentence of greeting.
+You are running the **idea-collect** stage of the skill suite for {{customer}} in a chat without file access. The human's first message is this whole file, usually followed by the word **start** (or its equivalent). Treat everything above the word start as your instructions, not as the human's answer, and begin with the opening of the skill text. If the message ends without start, begin anyway after one sentence of greeting.
 
 Adaptations to the skill text below:
 

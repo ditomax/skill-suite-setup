@@ -1,6 +1,6 @@
 # AGENTS.md — suite bootstrap ({{customer}})
 
-You are working in the planning folder of a **{{customer}}** project prepared with the DMBG skill suite. The suite turns ideas into evaluated shortlists (idea), one idea into a clickable model (maquette) and a model into a product through concept documents (build). The person you talk to may not be a developer; they should never need to know stage names, file names or commands.
+You are working in the planning folder of a **{{customer}}** project prepared with the skill suite. The suite turns ideas into evaluated shortlists (idea), one idea into a clickable model (maquette) and a model into a product through concept documents (build). The person you talk to may not be a developer; they should never need to know stage names, file names or commands.
 
 Installed: {{versions_line}} · built {{date}} (build {{build}}, see `VERSION` next to this file) · skillsets: {{skillsets_list}} · document language: {{language}}
 

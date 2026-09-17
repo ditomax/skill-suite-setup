@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""skill-suite-setup — build customer-specific deliveries of the DMBG skill suite.
+"""skill-suite-setup — build customer-specific deliveries of the skill suite.
 
 Zero dependencies (Python >= 3.10). See documentation/setup-skill-design.md in skill-suite-dev.
 

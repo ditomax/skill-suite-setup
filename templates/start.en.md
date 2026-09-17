@@ -1,4 +1,4 @@
-# Start — DMBG skill suite for {{customer}}
+# Start — skill suite for {{customer}}
 
 You received a ZIP file and this page. The ZIP contains a planning structure and the AI skill suite **{{skillsets_list}}** (the exact versions are in `planning/suite/VERSION` after unzipping). Nothing gets installed: it is text files that your AI app reads when you open the folder.
 

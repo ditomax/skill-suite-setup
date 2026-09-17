@@ -1,5 +1,9 @@
 # Changelog — skill-suite-setup
 
+## 0.1.7 — 2026-09-17
+AGENTS.md / CLAUDE.md gain a hard limit: public files (README, compat.md, CHANGELOG, PROFILE.md, everything in a release) name what was tested or changed, never a customer, a customer project, an internal folder or an internal test-run ID — the guard catches markers, not paraphrases. compat.md: the 0.2.2 row's test note no longer carries internal run IDs.
+DMBG removed from README, AGENTS.md / CLAUDE.md, `setup.py`, the setup skill and every template (start.en/de, root- and planning-AGENTS, prompt-idea-collect) — the product is simply the skill suite. compat.md: new top row idea 0.2.3 · maquette 0.6.2 · build 0.1.7 (README section order aligned across the three). examples/example pinned to it. No contract change.
+
 ## 0.1.6 — 2026-09-17
 `release.py`: the work-folder check no longer counts Finder/editor droppings (`.DS_Store`, `Thumbs.db`, `desktop.ini`, `._*`, `*.swp`/`*.swo`) as stray files — a `.DS_Store` in `maquettes/` aborted the v0.6.1 release although git never tracked it. Real files in the work folder still refuse the release. `.gitignore` here gained the `Thumbs.db` / `*.swp` lines the skillsets already had. No contract change.
 
