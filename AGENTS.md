@@ -1,6 +1,6 @@
 # AGENTS.md — skill-suite-setup
 
-You are in the maintainers' tool of the DMBG skill suite (idea → maquette → build). This repo builds **customer versions**: a tailoring dialogue produces `customers/<name>/` (or a folder in the customer project via `--customer-dir`), and `setup.py build` renders `start.md` + one ZIP the customer unzips into a project folder.
+You are in the setup tool of the DMBG skill suite (idea → maquette → build) — used by the suite's maintainers and by anyone who assembles or tailors their own version. This repo builds **customer versions**: a tailoring dialogue produces `customers/<name>/` (or a folder in the customer project via `--customer-dir`), and `setup.py build` renders `start.md` + one ZIP the customer unzips into a project folder.
 
 ## On every session start
 

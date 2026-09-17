@@ -15,7 +15,8 @@ Installed: {{versions_line}} · built {{date}} (build {{build}}, see `VERSION` n
 Read the state of the work folders, then:
 
 - no `idea/00-idea.md` and no maquette folder → **idea** (if installed; otherwise ask what to start from)
-- `idea/10-shortlist.md` with `status: done` and no `maquette/*/60-brief.md` with `status: done` → **maquette** (the Director lists the shortlist entries)
+- `idea/10-shortlist.md` with `status: done` and no `maquette/*/60-brief.md` with `status: done` → **maquette** (the Director proposes the entry named under the shortlist's Maquette order, or lists the entries)
+- the user asks to merge, split or re-evaluate idea cards ("merge", "split", "new committee round") → **idea**, whatever the state
 - a `60-brief.md` with `status: done` → **build** (the Director lists the briefs)
 - the user names a skillset ("maquette", "let's build") → that one, if installed
 - several candidates (e.g. a second idea while a build runs) → one question: "continue the build, or start a new maquette?"

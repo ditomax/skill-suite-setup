@@ -4,7 +4,12 @@
 
 Version: see `VERSION` · September 2026 · DMBG · https://github.com/ditomax/skill-suite-setup
 
-This is the maintainers' tool. It takes the three skillset repos ([idea](https://github.com/ditomax/idea), [maquette](https://github.com/ditomax/maquette), [build](https://github.com/ditomax/build)) at pinned versions, adds a customer profile produced in a guided dialogue, and renders a delivery that the customer's IT unzips into a project folder. Nothing is installed or fetched at the customer; the agent reads `planning/AGENTS.md` / `planning/CLAUDE.md` when the folder is opened and acts as the right Director. Anyone who knows the suite may use this repo to tailor their own version.
+This is the suite's setup tool. It takes the three skillset repos ([idea](https://github.com/ditomax/idea), [maquette](https://github.com/ditomax/maquette), [build](https://github.com/ditomax/build)) at pinned versions, adds a customer profile produced in a guided dialogue, and renders a delivery that the customer's IT unzips into a project folder. Nothing is installed or fetched at the customer; the agent reads `planning/AGENTS.md` / `planning/CLAUDE.md` when the folder is opened and acts as the right Director.
+
+Two kinds of users:
+
+- **Anyone who wants the suite as one project folder** — for their own organisation or for a customer, tailored or not: `new` → tailoring dialogue (optional) → `check` → `build`, as in *Usage*. Python ≥ 3.10 and the four clones are all it takes. The same route gives the prompt file for chat tools without folder access (`prompt`).
+- **Maintainers of the skillsets** additionally use `guard.py`, `release.py` and `hooks/` (see *Customer-data guard*) to keep customer data out of the public repos and to publish releases.
 
 ## Usage
 
@@ -19,7 +24,7 @@ python3 setup.py new acme --code ACM --language de          # scaffold customers
 # run the tailoring dialogue (skills/setup/SKILL.md) or edit customers/acme/profile/*.md by hand
 python3 setup.py check acme                                  # versions vs compat.md, question IDs, profile files
 python3 setup.py build acme                                  # dist/acme-suite-v1.zip + dist/acme-start-v1.md
-python3 setup.py prompt acme idea-collect                    # optional: prompt file for chat tools without folder access
+python3 setup.py prompt acme idea-collect                    # optional: idea's collect stage as one prompt file for chat tools without folder access
 ```
 
 `--customer-dir <path>` keeps a customer's folder inside the customer project instead of `customers/` (which is gitignored either way). A complete, fictitious customer is in `examples/example` — `python3 setup.py build example --customer-dir examples` shows the whole flow. Python ≥ 3.10, no dependencies.

@@ -22,7 +22,7 @@ Two sentences: you will walk through what this customer needs — scope, standar
 
 ## Sequence (new customer) — one question at a time
 
-1. **Customer and delivery.** Name (folder-safe, lowercase), org code (2–4 letters), document language (en / de), which skillsets (default all three; idea alone and maquette alone are valid), agent platform(s) the customer uses (cowork / chatgpt-codex / vibe-cli / other — decides the wording of start.md), recipient, contact for questions. Run `setup.py new <name> --code <CODE> --language <lang>` now, then edit `customer.yaml` for the rest.
+1. **Customer and delivery.** Name (folder-safe, lowercase), org code (2–4 letters), document language (en / de), address form in conversations (`address: du | sie`), which skillsets (default all three; idea alone and maquette alone are valid), agent platform(s) the customer uses (cowork / chatgpt-codex / vibe-cli / other — decides the wording of start.md), recipient, contact for questions. Run `setup.py new <name> --code <CODE> --language <lang>` now, then edit `customer.yaml` for the rest.
 2. **Versions.** Read `compat.md`, propose the latest triple, confirm or pin.
 3. **Scope** → `scope.md`: departments and their codes, allowed topics and exclusions, company goals / AI or data strategy (name the document if one exists — `[evidenced]`).
 4. **Standards** → `standards.md`: mandatory norms and certifications with contact persons, effort classes for V6 if not the defaults, house-specific requirement rows (trigger → required → verified by).

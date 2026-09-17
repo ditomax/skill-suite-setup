@@ -28,7 +28,7 @@ def main():
         die(f"work folder {work.name}/ is not empty ({len(stray)} files) — test runs belong under tests/, never in the dev copy")
     tracked = set(subprocess.run(["git", "ls-files"], cwd=base, capture_output=True, text=True, check=True).stdout.split())
     shipped, _ = ship_files(base)
-    wanted = {f.relative_to(base).as_posix() for f in shipped} | STANDALONE | {f"{WORK[a.skillset]}/.gitkeep"}
+    wanted = {f.relative_to(base).as_posix() for f in shipped} | STANDALONE | {f"{WORK[a.skillset]}/.gitkeep"} | {f.relative_to(base).as_posix() for f in base.glob("examples/*") if f.is_file()}
     files = sorted(wanted & tracked)
     untracked = sorted(wanted - tracked - {".gitignore"})
     if untracked:

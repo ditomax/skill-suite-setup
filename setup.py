@@ -26,7 +26,7 @@ def ship_files(base: Path) -> tuple[list[Path], list[Path]]:
     for pat in SHIP:
         shipped.update(f for f in base.glob(pat) if f.is_file())
     others = [f for f in base.rglob("*") if f.is_file() and f not in shipped and f.name != ".DS_Store"
-              and ".git" not in f.parts and f.relative_to(base).as_posix() not in NOT_SHIPPED_SILENTLY]
+              and ".git" not in f.parts and "examples" not in f.parts and f.relative_to(base).as_posix() not in NOT_SHIPPED_SILENTLY]
     return sorted(shipped), sorted(others)
 SKILLSETS = ("idea", "maquette", "build")
 PLATFORM_HINTS = {
@@ -280,6 +280,11 @@ def cmd_build(args):
     (cust / "customer.yaml").write_text(dump_yaml(c), encoding="utf-8")
     print(f"built {out / zipname} ({len(buf.getvalue()) // 1024} KB) and {c['name']}-start.md · profile: {present or 'core defaults'}")
 
+HOWTO = {
+    "en": "**How to use this file:** open it in a text editor, copy the whole content, paste it into an approved AI chat window, type **start** underneath and send. The AI interviews you about your daily work and writes idea cards; nothing is judged, nothing is dropped. At the end (about 45 minutes) it shows all cards once more — copy them into your reply mail to {{contact}}. Please do not type customer names or other personal data into the chat.",
+    "de": "**So verwenden Sie diese Datei:** Öffnen Sie sie mit einem Texteditor, kopieren Sie den gesamten Inhalt, fügen Sie ihn in ein freigegebenes KI-Chatfenster ein, schreiben Sie darunter **start** und senden Sie ab. Die KI führt ein Interview über Ihren Arbeitsalltag und schreibt Ideenkarten; nichts wird bewertet, nichts verworfen. Am Ende (nach etwa 45 Minuten) zeigt sie alle Karten noch einmal — kopieren Sie diese in Ihre Antwort-Mail an {{contact}}. Bitte geben Sie keine Kundennamen oder anderen personenbezogenen Daten in den Chat ein.",
+}
+
 def cmd_prompt(args):
     cust, c, suites = cmd_check(args, quiet=True)
     if args.stage != "idea-collect":
@@ -292,7 +297,9 @@ def cmd_prompt(args):
     ctx = {"customer": c["name"], "code": c["code"], "language": c["language"], "contact": c.get("contact", ""),
            "profile_scope": ("## Customer scope\n\n" + scope.read_text(encoding="utf-8")) if scope in profile_files(cust) else "",
            "profile_questions": ("## Tailored questions\n\n" + "\n".join(f"- {r['action']} {r['id']}: {r['value']}" for r in qrows)) if qrows else "",
-           "skill_body": body, "card_template": card}
+           "skill_body": body, "card_template": card,
+           "address": {"sie": "formal (German: Sie)", "du": "informal (German: du)"}.get(str(c.get("address", "du")).lower(), str(c.get("address", "du"))),
+           "howto": HOWTO.get(c["language"], HOWTO["en"]).replace("{{contact}}", str(c.get("contact", "")))}
     out = Path(args.out).expanduser() if args.out else HERE / "dist"
     out.mkdir(parents=True, exist_ok=True)
     p = out / f"{c['name']}-idea-collect-prompt.md"
