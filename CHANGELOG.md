@@ -1,5 +1,14 @@
 # Changelog — skill-suite-setup
 
+## 0.1.10 — 2026-09-30
+compat.md: new top row idea 0.3.0 · maquette 0.6.2 · build 0.1.9 (idea focus track, contract register/1 — not yet read downstream; explore unchanged). examples/example pinned to it. `setup.py prompt` carries only the profile rows of collect questions (C…, I…) — Director and evaluate rows (D…, E…, V…) no longer leak into the collect prompt file; it still renders the explore collect only, the focus prompt file follows. No change to H1/2 or H2/2.
+
+## 0.1.9 — 2026-09-28
+Prompt file (`setup.py prompt … idea-collect`): tailored questions now carry the text of the question they refer to and say what skip and add mean — the prompt file has no QUESTIONS.md, so a bare `skip C1` was unreadable for the chat model, and `add` lost its `after`. Cards stay in the background: one line when a card is captured, complete cards only on request and at the closing — in a chat the full card after every answer buried the next question. compat.md: new top row (same triple). No contract change.
+
+## 0.1.8 — 2026-09-25
+compat.md: new top row idea 0.2.4 · maquette 0.6.2 · build 0.1.9 (pre-mortem wording; V6 operating model at idea stage, operator names and time shares in build intake I7; also covers build 0.1.8). examples/example pinned to it. No contract change.
+
 ## 0.1.7 — 2026-09-17
 AGENTS.md / CLAUDE.md gain a hard limit: public files (README, compat.md, CHANGELOG, PROFILE.md, everything in a release) name what was tested or changed, never a customer, a customer project, an internal folder or an internal test-run ID — the guard catches markers, not paraphrases. compat.md: the 0.2.2 row's test note no longer carries internal run IDs.
 DMBG removed from README, AGENTS.md / CLAUDE.md, `setup.py`, the setup skill and every template (start.en/de, root- and planning-AGENTS, prompt-idea-collect) — the product is simply the skill suite. compat.md: new top row idea 0.2.3 · maquette 0.6.2 · build 0.1.7 (README section order aligned across the three). examples/example pinned to it. No contract change.

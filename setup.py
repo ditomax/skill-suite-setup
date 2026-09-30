@@ -285,6 +285,25 @@ HOWTO = {
     "de": "**So verwenden Sie diese Datei:** Öffnen Sie sie mit einem Texteditor, kopieren Sie den gesamten Inhalt, fügen Sie ihn in ein freigegebenes KI-Chatfenster ein, schreiben Sie darunter **start** und senden Sie ab. Die KI führt ein Interview über Ihren Arbeitsalltag und schreibt Ideenkarten; nichts wird bewertet, nichts verworfen. Am Ende (nach etwa 45 Minuten) zeigt sie alle Karten noch einmal — kopieren Sie diese in Ihre Antwort-Mail an {{contact}}. Bitte geben Sie keine Kundennamen oder anderen personenbezogenen Daten in den Chat ein.",
 }
 
+def tailored_questions(qfile: Path, qrows: list[dict]) -> str:
+    """Render profile skip/add rows with the question text they refer to — the prompt file carries no QUESTIONS.md."""
+    if not qrows:
+        return ""
+    text = {}
+    for line in qfile.read_text(encoding="utf-8").splitlines():
+        c = [x.strip() for x in line.strip().strip("|").split("|")]
+        if line.startswith("|") and len(c) >= 2 and re.fullmatch(r"[A-Z]\d+", c[0]):
+            text.setdefault(c[0], c[1])
+    out = ["## Tailored questions", "",
+           "The profile changes the interview questions below. **skip** — do not ask the question; use the value as known and confirm it once in half a sentence. **add after** — ask the new question once, right after the named question (or where that question would have come)."]
+    for r in qrows:
+        q = text.get(r["id"], "")
+        if r["action"] == "skip":
+            out.append(f"- **skip {r['id']}** ({q}) — value: {r['value']}")
+        else:
+            out.append(f"- **add after {r['id']}** ({q}) — ask: {r['value']}")
+    return "\n".join(out)
+
 def cmd_prompt(args):
     cust, c, suites = cmd_check(args, quiet=True)
     if args.stage != "idea-collect":
@@ -293,10 +312,10 @@ def cmd_prompt(args):
     body = re.sub(r"^---.*?---\n", "", skill, count=1, flags=re.S)
     card = (suites / "idea" / "templates" / "card.md").read_text(encoding="utf-8")
     scope = cust / "profile" / "scope.md"
-    qrows = [r for r in profile_questions(cust) if r["skillset"] == "idea"]
+    qrows = [r for r in profile_questions(cust) if r["skillset"] == "idea" and r["id"][:1] in ("C", "I")]   # collect questions only
     ctx = {"customer": c["name"], "code": c["code"], "language": c["language"], "contact": c.get("contact", ""),
            "profile_scope": ("## Customer scope\n\n" + scope.read_text(encoding="utf-8")) if scope in profile_files(cust) else "",
-           "profile_questions": ("## Tailored questions\n\n" + "\n".join(f"- {r['action']} {r['id']}: {r['value']}" for r in qrows)) if qrows else "",
+           "profile_questions": tailored_questions(suites / "idea" / "QUESTIONS.md", qrows),
            "skill_body": body, "card_template": card,
            "address": {"sie": "formal (German: Sie)", "du": "informal (German: du)"}.get(str(c.get("address", "du")).lower(), str(c.get("address", "du"))),
            "howto": HOWTO.get(c["language"], HOWTO["en"]).replace("{{contact}}", str(c.get("contact", "")))}
