@@ -7,6 +7,6 @@ recipient: IT-Leitung Example GmbH
 contact: Jane Doe, jane@example.com
 build: 3
 versions:
-  idea: 0.3.0
-  maquette: 0.6.2
-  build: 0.1.9
+  idea: 0.3.1
+  maquette: 0.6.3
+  build: 0.1.10

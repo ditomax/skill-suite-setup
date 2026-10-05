@@ -1,5 +1,8 @@
 # Changelog — skill-suite-setup
 
+## 0.1.11 — 2026-10-05
+compat.md: new top row idea 0.3.1 · maquette 0.6.3 · build 0.1.10 (running cost and Users & scale in idea; running cost, load and growth, capacity & scaling in build; AI tools named in every ATTRIBUTION.md). examples/example pinned to it. No contract change.
+
 ## 0.1.10 — 2026-09-30
 compat.md: new top row idea 0.3.0 · maquette 0.6.2 · build 0.1.9 (idea focus track, contract register/1 — not yet read downstream; explore unchanged). examples/example pinned to it. `setup.py prompt` carries only the profile rows of collect questions (C…, I…) — Director and evaluate rows (D…, E…, V…) no longer leak into the collect prompt file; it still renders the explore collect only, the focus prompt file follows. No change to H1/2 or H2/2.
 
