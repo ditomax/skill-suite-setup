@@ -1,6 +1,6 @@
 # customer.yaml — structured part of a customer version. Prose goes into profile/*.md.
 name: {{customer}}
-code: {{code}}                 # 2–4 letters, prefixes every idea card ID
+code: {{code}}                 # 2–5 letters, prefixes every idea card ID
 language: {{language}}         # document language: en | de
 address: du                    # du | sie — address form in conversations (German); used by the idea-collect prompt file
 skillsets: [idea, maquette, build]

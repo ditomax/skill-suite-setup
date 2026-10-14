@@ -1,6 +1,6 @@
 # AGENTS.md — suite bootstrap ({{customer}})
 
-You are working in the planning folder of a **{{customer}}** project prepared with the skill suite. The suite turns ideas into evaluated shortlists (idea), one idea into a clickable model (maquette) and a model into a product through concept documents (build). The person you talk to may not be a developer; they should never need to know stage names, file names or commands.
+You are working in the planning folder of a **{{customer}}** project prepared with the skill suite. The suite turns ideas into evaluated shortlists — or, for a fixed project, into a prioritised requirement register (idea) —, one idea or project into a clickable model (maquette) and a model, register or shortlist entry into a product through concept documents (build). The person you talk to may not be a developer; they should never need to know stage names, file names or commands.
 
 Installed: {{versions_line}} · built {{date}} (build {{build}}, see `VERSION` next to this file) · skillsets: {{skillsets_list}} · document language: {{language}}
 
@@ -12,15 +12,17 @@ Installed: {{versions_line}} · built {{date}} (build {{build}}, see `VERSION` n
 
 ## Dispatch rule
 
-Read the state of the work folders, then:
+The skillsets work alone or in any order — this rule only proposes where to continue; it never forces a path. Say the proposal in half a sentence and name the alternative ("the register is done — next is the maquette; we can also go straight to build").
 
-- no `idea/00-idea.md` and no maquette folder → **idea** (if installed; otherwise ask what to start from)
-- `idea/10-shortlist.md` with `status: done` and no `maquette/*/60-brief.md` with `status: done` → **maquette** (the Director proposes the entry named under the shortlist's Maquette order, or lists the entries)
-- the user asks to merge, split or re-evaluate idea cards ("merge", "split", "new committee round") → **idea**, whatever the state
-- a `60-brief.md` with `status: done` → **build** (the Director lists the briefs)
-- the user names a skillset ("maquette", "let's build") → that one, if installed
-- several candidates (e.g. a second idea while a build runs) → one question: "continue the build, or start a new maquette?"
-- a skillset the user asks for is not installed → say so and name the contact in `profile/profile.md`
+1. **The user's word wins.** The user names a skillset ("maquette", "let's build") or an action that belongs to one ("merge", "split", "new committee round", "another interview", "a mail return came in") → that skillset, if installed, whatever the state.
+2. Otherwise read the state of the work folders and take the **most advanced finished hand-over** (always the highest `.vN` of a file):
+   - a `maquette/*/60-brief.md` with `status: done` → **build** (the Director lists the briefs);
+   - `idea/10-register.md` with `status: done` (focus track) → the skillset its `next:` names (**maquette** or **build**); not installed → the other one; `next: —` (outcome stop) → **idea**, which explains the outcome;
+   - `idea/10-shortlist.md` with `status: done` → **maquette** (the Director proposes the entry named under Maquette order); maquette not installed → **build** (Path S, the Director proposes the same entry);
+   - idea work started (`idea/00-idea.md`) but nothing handed over yet → **idea**;
+   - nothing yet → **idea** if installed; otherwise ask what to start from — maquette and build both start from an idea in two sentences.
+3. A skillset that is already running (a maquette or build folder with a stage `in_progress`) is a candidate too. Several candidates (e.g. a new register round while a build runs) → one question: "continue the build, or take the new register into the maquette?"
+4. A skillset the user asks for is not installed → say so and name the contact in `profile/profile.md`; offer the installed one that can take the same file (a register or shortlist can go to maquette or build).
 
 ## Layout
 
@@ -29,7 +31,7 @@ planning/
   AGENTS.md CLAUDE.md           static pointers to this file
   suite/                        this bootstrap, VERSION, and the skillsets <idea|maquette|build>/ — read-only, pinned
   profile/                      this customer's constraints — read-only for you
-  idea/                         cards, evaluations, 10-shortlist.md (H1)
+  idea/                         explore: cards, evaluations, 10-shortlist.md (H1) · focus: frame, contributions, 10-register.md (register/1)
   maquette/<CODE>-<slug>/       one folder per maquette, 60-brief.md (H2) and vcode/ frozen after done
   build/                        00-build.md, CONTEXT.md, decisions/, registers, <FEAT>/ per feature
   _archive/                     old suite/profile versions after an update — never read, never delete

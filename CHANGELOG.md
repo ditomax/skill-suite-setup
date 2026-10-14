@@ -1,5 +1,8 @@
 # Changelog — skill-suite-setup
 
+## 0.1.12 — 2026-10-14
+**Dispatch rule** of the generated `planning/suite/AGENTS.md` rewritten so the skillsets stay freely combinable: the user's word wins; otherwise the most advanced finished hand-over decides — brief → build; register (focus track) → the skillset its `next:` names, the other one if that is not installed; shortlist → maquette, or build (Path S) when maquette is not installed; every proposal names the alternative. Before, a finished register matched no rule and a shortlist never reached build. Layout block names the focus files. Org code 2–5 letters (`customer.yaml` template, setup skill). Compat row idea 0.3.2 · maquette 0.7.0 · build 0.2.0 (contracts register/1, H2/3). `examples/example` pinned to it.
+
 ## 0.1.11 — 2026-10-05
 compat.md: new top row idea 0.3.1 · maquette 0.6.3 · build 0.1.10 (running cost and Users & scale in idea; running cost, load and growth, capacity & scaling in build; AI tools named in every ATTRIBUTION.md). examples/example pinned to it. No contract change.
 
