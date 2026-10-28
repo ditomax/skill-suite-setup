@@ -14,7 +14,7 @@ description: >
 
 You produce a **customer version**: `customers/<name>/customer.yaml` and `customers/<name>/profile/*.md`, then run `setup.py check` and offer `setup.py build`. You never edit the skillset repos here — a customer wish that needs a suite change is noted under "Feedback to the suite" at the end and goes to the skillset's maintainer.
 
-Read `../../documentation/setup-skill-design.md` §5 (profile specification) if it is reachable, else the templates in `templates/profile/` — the comments there are the field spec. Read the three `QUESTIONS.md` (`<suites>/idea|maquette|build/QUESTIONS.md`) before step 9.
+Read `../../PROFILE.md` (the profile specification) and the templates in `templates/profile/` — the comments there are the field spec. Read the three `QUESTIONS.md` (`<suites>/idea|maquette|build/QUESTIONS.md`) before step 9.
 
 ## Opening
 
@@ -22,17 +22,17 @@ Two sentences: you will walk through what this customer needs — scope, standar
 
 ## Sequence (new customer) — one question at a time
 
-1. **Customer and delivery.** Name (folder-safe, lowercase), org code (2–5 letters), document language (en / de), address form in conversations (`address: du | sie`), which skillsets (default all three; idea alone and maquette alone are valid), agent platform(s) the customer uses (cowork / chatgpt-codex / vibe-cli / other — decides the wording of start.md), recipient, contact for questions. Run `setup.py new <name> --code <CODE> --language <lang>` now, then edit `customer.yaml` for the rest.
+1. **Customer and delivery.** Name (folder-safe, lowercase), org code (2–5 letters), document language (en / de), address form in conversations (`address: du | sie`), which skillsets (default all three; any subset in suite order is valid — idea alone, maquette alone, or idea → build without maquette, where build takes a shortlist entry (Path S) or the focus register (Path R)), agent platform(s) the customer uses (cowork / chatgpt-codex / vibe-cli / other — decides the wording of start.md), recipient, contact for questions. Run `setup.py new <name> --code <CODE> --language <lang>` now, then edit `customer.yaml` for the rest.
 2. **Versions.** Read `compat.md`, propose the latest triple, confirm or pin.
-3. **Scope** → `scope.md`: departments and their codes, allowed topics and exclusions, company goals / AI or data strategy (name the document if one exists — `[evidenced]`).
+3. **Scope** → `scope.md`: departments and their codes, allowed topics and exclusions, company goals / AI or data strategy (name the document if one exists — `[evidenced]`). If the customer runs idea's focus track: known context and the perspectives to be heard, each with a 2–4 letter code — they prefill the frame and stand in for it in a focus prompt file without a frame.
 4. **Standards** → `standards.md`: mandatory norms and certifications with contact persons, effort classes for V6 if not the defaults, house-specific requirement rows (trigger → required → verified by).
 5. **IT** → `it-constraints.md`: allowed stacks and dependencies, hosting, network (none / allow-list), data rules incl. personal data. If build is ordered → `conventions.md`: repository layout, linters, CI, commit rules.
 6. **Design** → `design.md`: corporate design tokens or "none". With tokens, say that design-3 will vary layout and density instead of colour.
 7. **Their idea formats** → `import-formats.md`: does the customer already have idea lists, spreadsheets, a tool export? If a sample is pasted, draft the column → card-field mapping and read it back. Note encoding quirks.
 8. **Review process** → `review.md`: who decides after a maquette, who signs each build gate, how (meeting, mail, in the chat); the customer's own next-step options if they replace the brief's defaults.
 9. **Questions** → `questions.md`. Walk the ordered skillsets stage by stage, using `QUESTIONS.md`. Per stage, two questions: "Which of these does the customer already know — the answer becomes a `skip` with a value" and "Is anything missing that every idea / maquette / feature here must answer — that becomes an `add` after the question it belongs to". Gate questions cannot be skipped; say so if asked. Keep each reason to a few words.
-10. **Modes and budgets** → `profile.md`: default maquette mode, build path, budgets per stage only if they deviate, sponsor and product-owner roles.
-11. **Read back** the profile in one block (file → three lines each). On approval write the files, run `setup.py check <name>`, fix what it reports, then ask: "Build the ZIP now?" → `setup.py build <name>`. Report the ZIP path, its size and the start.md path. Offer `setup.py prompt <name> idea-collect` if the customer has people without folder-capable AI tools.
+10. **Track, budgets, roles** → `profile.md`: idea's track if the customer fixes it for every workspace (`Track: explore | focus`; otherwise the Director asks D5 per workspace), budgets per stage only if they deviate, sponsor and product-owner roles. build chooses its path from what it finds (brief, register, shortlist entry) — the profile does not set it.
+11. **Read back** the profile in one block (file → three lines each). On approval write the files, run `setup.py check <name>`, fix what it reports, then ask: "Build the ZIP now?" → `setup.py build <name>`. Report the ZIP path, its size and the start.md path. If the customer has people without folder-capable AI tools, offer the prompt file for their track: explore → `setup.py prompt <name> idea-collect`; focus → `setup.py prompt <name> idea-focus-collect --frame <project>/planning/idea/05-frame.md` once the frame is done, without `--frame` before that (the scope then stands in for the frame).
 
 ## Rules
 

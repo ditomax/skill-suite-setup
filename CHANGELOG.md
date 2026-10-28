@@ -1,5 +1,12 @@
 # Changelog — skill-suite-setup
 
+## 0.1.13 — 2026-10-28
+- Prompt file for the focus track (`prompt … idea-focus-collect`) — interviews by mail, optionally on the project's frame (`--frame`).
+- Profile templates know the focus track: track line, known context, perspectives.
+- Setup dialogue brought up to idea 0.3 · maquette 0.7 · build 0.2 (idea → build without maquette, track question).
+- The project bootstrap answers questions about its files without starting the workflow.
+- README, PROFILE.md and compat.md updated. No contract change.
+
 ## 0.1.12 — 2026-10-14
 **Dispatch rule** of the generated `planning/suite/AGENTS.md` rewritten so the skillsets stay freely combinable: the user's word wins; otherwise the most advanced finished hand-over decides — brief → build; register (focus track) → the skillset its `next:` names, the other one if that is not installed; shortlist → maquette, or build (Path S) when maquette is not installed; every proposal names the alternative. Before, a finished register matched no rule and a shortlist never reached build. Layout block names the focus files. Org code 2–5 letters (`customer.yaml` template, setup skill). Compat row idea 0.3.2 · maquette 0.7.0 · build 0.2.0 (contracts register/1, H2/3). `examples/example` pinned to it.
 

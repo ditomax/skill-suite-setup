@@ -23,8 +23,11 @@ cd skill-suite-setup
 python3 setup.py new acme --code ACM --language de          # scaffold customers/acme/
 # run the tailoring dialogue (skills/setup/SKILL.md) or edit customers/acme/profile/*.md by hand
 python3 setup.py check acme                                  # versions vs compat.md, question IDs, profile files
-python3 setup.py build acme                                  # dist/acme-suite-v1.zip + dist/acme-start-v1.md
+python3 setup.py build acme                                  # dist/acme-suite-v1.zip + dist/acme-start.md
 python3 setup.py prompt acme idea-collect                    # optional: idea's collect stage as one prompt file for chat tools without folder access
+python3 setup.py prompt acme idea-focus-collect --frame <project>/planning/idea/05-frame.md
+                                                             # optional: the same for the focus track — one contribution session on the
+                                                             # project's frozen frame; without --frame the profile scope stands in
 ```
 
 `--customer-dir <path>` keeps a customer's folder inside the customer project instead of `customers/` (which is gitignored either way). A complete, fictitious customer is in `examples/example` — `python3 setup.py build example --customer-dir examples` shows the whole flow. Python ≥ 3.10, no dependencies.
@@ -69,7 +72,7 @@ hooks/pre-commit    the guard as a git hook — copy of the one in each skillset
 PROFILE.md          the profile specification the skillsets read
 compat.md           version triples known to work together, with contract versions H1/H2
 skills/setup/       the tailoring dialogue
-templates/          root-AGENTS.md · planning-AGENTS.md · planning-pointer-AGENTS.md · start.en.md · start.de.md · customer.yaml · profile/*.md · prompt-idea-collect.md
+templates/          root-AGENTS.md · planning-AGENTS.md · planning-pointer-AGENTS.md · start.en.md · start.de.md · customer.yaml · profile/*.md · prompt-idea-collect.md · prompt-idea-focus-collect.md
 customers/          gitignored — one folder per customer
 examples/example/   a fictitious customer (Example GmbH) — the reference for a filled profile
 AGENTS.md CLAUDE.md bootstrap for an agent working in this repo

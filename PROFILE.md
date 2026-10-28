@@ -8,10 +8,10 @@ Every Director reads `profile/profile.md` at every start and passes the files na
 
 | File | Read by | Content |
 | --- | --- | --- |
-| `profile.md` | all Directors | customer, org code, default `language`, default modes, budgets per stage, sponsor / product-owner roles, contact for questions, list of the other profile files present |
+| `profile.md` | all Directors | customer, org code, default `language`, idea's track (`Track: explore | focus`, optional — D5 is then not asked), default modes, budgets per stage, sponsor / product-owner roles, contact for questions, list of the other profile files present |
 | `questions.md` | all Directors | `skip` / `add` per question ID (see below) |
-| `scope.md` | idea-collect, sparring | allowed topic areas, exclusions, department list for the interface round, company goals / AI strategy (prefills Strategy link) |
-| `standards.md` | idea-evaluate (V8), build-intake, build-concept | mandatory norms and certifications with contact persons; effort classes for V6; house-specific requirement checklist rows |
+| `scope.md` | idea-collect, idea-focus-collect, sparring | allowed topic areas, exclusions, department list for the interface round, company goals / AI strategy (prefills Strategy link); focus track: known context and perspectives with codes (prefill the frame; stand in for it in a focus prompt file without `--frame`) |
+| `standards.md` | idea-evaluate and idea-focus-review (V6, V8), build-intake, build-concept | mandatory norms and certifications with contact persons; effort classes for V6; house-specific requirement checklist rows |
 | `it-constraints.md` | plan-board, maquette-build, build-concept, build-synthesis | allowed stacks and dependencies, hosting, "no network", data rules, where a prototype may run |
 | `design.md` | design-3 | corporate design tokens (typeface, colours, spacing); variants then differ in layout, density and flow |
 | `import-formats.md` | idea-collect | the customer's own card formats: columns → card fields (e.g. their xlsx export), encoding notes |

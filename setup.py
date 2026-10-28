@@ -6,7 +6,7 @@ Zero dependencies (Python >= 3.10). See documentation/setup-skill-design.md in s
     setup.py new    <customer> [--customer-dir DIR] [--code X] [--language en|de]
     setup.py check  <customer> [--customer-dir DIR] [--suites DIR]
     setup.py build  <customer> [--customer-dir DIR] [--suites DIR] [--out DIR] [--force]
-    setup.py prompt <customer> idea-collect [--customer-dir DIR] [--suites DIR] [--out DIR]
+    setup.py prompt <customer> idea-collect|idea-focus-collect [--frame FILE] [--customer-dir DIR] [--suites DIR] [--out DIR]
     setup.py list   [--customer-dir DIR]
 """
 from __future__ import annotations
@@ -280,6 +280,11 @@ def cmd_build(args):
     (cust / "customer.yaml").write_text(dump_yaml(c), encoding="utf-8")
     print(f"built {out / zipname} ({len(buf.getvalue()) // 1024} KB) and {c['name']}-start.md · profile: {present or 'core defaults'}")
 
+HOWTO_FOCUS = {
+    "en": "**How to use this file:** open it in a text editor, copy the whole content, paste it into an approved AI chat window, type **start** underneath and send. The AI interviews you about your daily work and notes what the project must achieve and respect from your point of view; nothing is judged, nothing is dropped, every question can be skipped. At the end (about 45 minutes) it shows all your contributions as one block — copy it into your reply mail to {{contact}}. Please do not type customer names or other personal data into the chat.",
+    "de": "**So verwenden Sie diese Datei:** Öffnen Sie sie mit einem Texteditor, kopieren Sie den gesamten Inhalt, fügen Sie ihn in ein freigegebenes KI-Chatfenster ein, schreiben Sie darunter **start** und senden Sie ab. Die KI führt ein Interview über Ihren Arbeitsalltag und notiert, was das Vorhaben aus Ihrer Sicht leisten und beachten muss; nichts wird bewertet, nichts verworfen, jede Frage kann ausgelassen werden. Am Ende (nach etwa 45 Minuten) zeigt sie alle Ihre Beiträge in einem Block — kopieren Sie diesen in Ihre Antwort-Mail an {{contact}}. Bitte geben Sie keine Kundennamen oder anderen personenbezogenen Daten in den Chat ein.",
+}
+
 HOWTO = {
     "en": "**How to use this file:** open it in a text editor, copy the whole content, paste it into an approved AI chat window, type **start** underneath and send. The AI interviews you about your daily work and writes idea cards; nothing is judged, nothing is dropped. At the end (about 45 minutes) it shows all cards once more — copy them into your reply mail to {{contact}}. Please do not type customer names or other personal data into the chat.",
     "de": "**So verwenden Sie diese Datei:** Öffnen Sie sie mit einem Texteditor, kopieren Sie den gesamten Inhalt, fügen Sie ihn in ein freigegebenes KI-Chatfenster ein, schreiben Sie darunter **start** und senden Sie ab. Die KI führt ein Interview über Ihren Arbeitsalltag und schreibt Ideenkarten; nichts wird bewertet, nichts verworfen. Am Ende (nach etwa 45 Minuten) zeigt sie alle Karten noch einmal — kopieren Sie diese in Ihre Antwort-Mail an {{contact}}. Bitte geben Sie keine Kundennamen oder anderen personenbezogenen Daten in den Chat ein.",
@@ -292,7 +297,7 @@ def tailored_questions(qfile: Path, qrows: list[dict]) -> str:
     text = {}
     for line in qfile.read_text(encoding="utf-8").splitlines():
         c = [x.strip() for x in line.strip().strip("|").split("|")]
-        if line.startswith("|") and len(c) >= 2 and re.fullmatch(r"[A-Z]\d+", c[0]):
+        if line.startswith("|") and len(c) >= 2 and re.fullmatch(r"[A-Z]{1,2}\d+", c[0]):
             text.setdefault(c[0], c[1])
     out = ["## Tailored questions", "",
            "The profile changes the interview questions below. **skip** — do not ask the question; use the value as known and confirm it once in half a sentence. **add after** — ask the new question once, right after the named question (or where that question would have come)."]
@@ -304,25 +309,62 @@ def tailored_questions(qfile: Path, qrows: list[dict]) -> str:
             out.append(f"- **add after {r['id']}** ({q}) — ask: {r['value']}")
     return "\n".join(out)
 
+FRAME_FALLBACK = ("No frame file is attached — the customer scope below stands in for it. At FC1 ask for the role and propose a 2–4 letter "
+                  "perspective code (from the scope's Perspectives list if it has one, else from the role); consolidation maps it to the project's frame later.")
+
+def frame_for_prompt(args, c: dict) -> tuple[str, str]:
+    """(note, block) for the focus prompt: the project's frozen 05-frame.md if --frame names one, else the profile scope stands in."""
+    if not args.frame:
+        return FRAME_FALLBACK, ""
+    if args.stage != "idea-focus-collect":
+        die("--frame belongs to idea-focus-collect")
+    fp = Path(args.frame).expanduser()
+    if not fp.is_file():
+        die(f"no frame file at {fp}")
+    text = fp.read_text(encoding="utf-8")
+    m = re.match(r"---\n(.*?)\n---\n", text, re.S)
+    meta = {}
+    for line in (m.group(1).splitlines() if m else []):
+        k, _, v = line.split("#", 1)[0].partition(":")
+        meta[k.strip()] = v.strip()
+    if meta.get("stage") != "frame":
+        die(f"{fp.name} is not a frame file (stage: {meta.get('stage', '—')})")
+    if meta.get("status") != "done":
+        die(f"{fp.name} has status {meta.get('status', '—')} — freeze the frame first (status done), or leave out --frame and the profile scope stands in")
+    allow = str(c.get("guard_group", c["name"]))
+    report = guard.scan_files([fp], guard.load_markers(guard.markers_path(getattr(args, "markers", None))), allow=allow)
+    if report:
+        guard.print_report(report, allow); die("the frame carries markers of another customer — refused")
+    rev = meta.get("revision", "?")
+    note = (f"The frame below (`05-frame.md`, revision {rev}) is the project: take the perspective codes from its Perspectives section "
+            "and the touchpoints from its Touchpoints section; never change the frame.")
+    body = re.sub(r"^(#+) ", r"#\1 ", text[m.end():].strip(), flags=re.M)      # the frame's headings one level down, under the prompt's sections
+    return note, f"_From `{fp.name}`, revision {rev} — frozen, never change it._\n\n" + body
+
 def cmd_prompt(args):
     cust, c, suites = cmd_check(args, quiet=True)
-    if args.stage != "idea-collect":
-        die("only idea-collect has a prompt file")
-    skill = (suites / "idea" / "skills" / "idea-collect" / "SKILL.md").read_text(encoding="utf-8")
+    stages = {"idea-collect": ("card.md", lambda i: i[:1] in ("C", "I"), HOWTO),           # explore: collect questions only
+              "idea-focus-collect": ("session.md", lambda i: i[:2] == "FC", HOWTO_FOCUS)}  # focus: contribution session only (frame comes from the profile)
+    if args.stage not in stages:
+        die(f"prompt files exist for {', '.join(stages)}")
+    tmpl, qfilter, howto = stages[args.stage]
+    skill = (suites / "idea" / "skills" / args.stage / "SKILL.md").read_text(encoding="utf-8")
     body = re.sub(r"^---.*?---\n", "", skill, count=1, flags=re.S)
-    card = (suites / "idea" / "templates" / "card.md").read_text(encoding="utf-8")
+    card = (suites / "idea" / "templates" / tmpl).read_text(encoding="utf-8")
     scope = cust / "profile" / "scope.md"
-    qrows = [r for r in profile_questions(cust) if r["skillset"] == "idea" and r["id"][:1] in ("C", "I")]   # collect questions only
+    qrows = [r for r in profile_questions(cust) if r["skillset"] == "idea" and qfilter(r["id"])]
+    frame_note, frame_block = frame_for_prompt(args, c)
     ctx = {"customer": c["name"], "code": c["code"], "language": c["language"], "contact": c.get("contact", ""),
+           "frame_note": frame_note, "frame_block": frame_block,
            "profile_scope": ("## Customer scope\n\n" + scope.read_text(encoding="utf-8")) if scope in profile_files(cust) else "",
            "profile_questions": tailored_questions(suites / "idea" / "QUESTIONS.md", qrows),
            "skill_body": body, "card_template": card,
            "address": {"sie": "formal (German: Sie)", "du": "informal (German: du)"}.get(str(c.get("address", "du")).lower(), str(c.get("address", "du"))),
-           "howto": HOWTO.get(c["language"], HOWTO["en"]).replace("{{contact}}", str(c.get("contact", "")))}
+           "howto": howto.get(c["language"], howto["en"]).replace("{{contact}}", str(c.get("contact", "")))}
     out = Path(args.out).expanduser() if args.out else HERE / "dist"
     out.mkdir(parents=True, exist_ok=True)
-    p = out / f"{c['name']}-idea-collect-prompt.md"
-    p.write_text(render((HERE / "templates" / "prompt-idea-collect.md").read_text(encoding="utf-8"), ctx), encoding="utf-8")
+    p = out / f"{c['name']}-{args.stage}-prompt.md"
+    p.write_text(render((HERE / "templates" / f"prompt-{args.stage}.md").read_text(encoding="utf-8"), ctx), encoding="utf-8")
     print(f"wrote {p}")
 
 def cmd_list(args):
@@ -344,7 +386,7 @@ def main():
     p = sub.add_parser("new"); common(p); p.add_argument("--code"); p.add_argument("--language", default="en"); p.set_defaults(fn=cmd_new)
     p = sub.add_parser("check"); common(p); p.add_argument("--force", action="store_true"); p.set_defaults(fn=cmd_check)
     p = sub.add_parser("build"); common(p); p.add_argument("--out"); p.add_argument("--force", action="store_true"); p.add_argument("--markers"); p.set_defaults(fn=cmd_build)
-    p = sub.add_parser("prompt"); common(p); p.add_argument("stage"); p.add_argument("--out"); p.set_defaults(fn=cmd_prompt)
+    p = sub.add_parser("prompt"); common(p); p.add_argument("stage"); p.add_argument("--out"); p.add_argument("--frame"); p.add_argument("--markers"); p.set_defaults(fn=cmd_prompt)
     p = sub.add_parser("list"); common(p, customer=False); p.set_defaults(fn=cmd_list)
     args = ap.parse_args()
     args.fn(args)

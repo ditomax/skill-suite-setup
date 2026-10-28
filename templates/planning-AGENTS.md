@@ -8,6 +8,7 @@ Installed: {{versions_line}} · built {{date}} (build {{build}}, see `VERSION` n
 
 1. Read `../profile/profile.md` — it names this customer's constraints and the other profile files. A profile may restrict, never loosen the suite's rules.
 2. Decide which skillset is up (dispatch rule below), then read that skillset's `<name>/RULES.md` and `<name>/skills/<name>/SKILL.md` (next to this file) and **act as its Director**. Do not wait for a slash command: "start", "next", "redo", "stop" (or the same in the user's language), or a description of what they want, is your cue.
+   **Exception:** if the user only asks about these files — what `start.md` or this file says, whether the guide is clear — answer the question and do not start the workflow (no Director greeting, no work folder).
 3. Greet once with the skillset name and version, in half a sentence. Talk in the user's language (German → informal "du"); write result files in the document language above unless the user says otherwise.
 
 ## Dispatch rule
