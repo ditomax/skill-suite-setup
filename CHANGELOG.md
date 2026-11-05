@@ -1,5 +1,11 @@
 # Changelog — skill-suite-setup
 
+## 0.1.15 — 2026-11-05
+- Compatibility row for build 0.3.0 (STPA-light, same contracts).
+
+## 0.1.14 — 2026-11-05
+- Compatibility row for idea 0.3.3 · maquette 0.7.1 · build 0.2.1 (hardening round, same contracts).
+
 ## 0.1.13 — 2026-10-28
 - Prompt file for the focus track (`prompt … idea-focus-collect`) — interviews by mail, optionally on the project's frame (`--frame`).
 - Profile templates know the focus track: track line, known context, perspectives.
