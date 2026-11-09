@@ -1,5 +1,8 @@
 # Changelog — skill-suite-setup
 
+## 0.1.17 — 2026-11-09
+- Compatibility row for the release bundle idea 0.3.3 · maquette 0.7.2 · build 0.3.1.
+
 ## 0.1.16 — 2026-11-09
 - The project pointer in `AGENTS.md` carries the secret rule (no secrets in commands, prefer generalized permission rules).
 - Compatibility row for build 0.3.1.
