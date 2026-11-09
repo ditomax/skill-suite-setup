@@ -1,5 +1,9 @@
 # Changelog — skill-suite-setup
 
+## 0.1.16 — 2026-11-09
+- The project pointer in `AGENTS.md` carries the secret rule (no secrets in commands, prefer generalized permission rules).
+- Compatibility row for build 0.3.1.
+
 ## 0.1.15 — 2026-11-05
 - Compatibility row for build 0.3.0 (STPA-light, same contracts).
 

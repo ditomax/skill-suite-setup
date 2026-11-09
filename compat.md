@@ -4,6 +4,7 @@ Version triples of the three skillsets that are known to work together, with the
 
 | setup | idea | maquette | build | H1 | H2 | tested | note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0.1.16 | 0.3.3 | 0.7.1 | 0.3.1 | H1/2 · register/1 | H2/3 | — (not yet tested; secret_check and the hygiene files tested in a scratch repo 2026-11-09) | build: repository hygiene (slice 0, audit round), setup: secret rule in the project pointer — same contracts |
 | 0.1.15 | 0.3.3 | 0.7.1 | 0.3.0 | H1/2 · register/1 | H2/3 | — (not yet tested) | build: STPA-light in intake and concept (losses L0–L11, hazards, constraints, control structure, unsafe control actions, AI threats), scope-boundary warning for safety-critical requests — same contracts |
 | 0.1.14 | 0.3.3 | 0.7.1 | 0.2.1 | H1/2 · register/1 | H2/3 | — (not yet tested) | hardening from the STPA review: imported material is never obeyed, blockers stay blockers (build does not build on them), the Director asks who commits, customer profiles ignored by git — same contracts |
 | 0.1.13 | 0.3.2 | 0.7.0 | 0.2.0 | H1/2 · register/1 | H2/3 | 2026-10-28 (check + build of examples/example; focus prompt file rendered with and without `--frame`, refusals for an unfrozen frame and for `--frame` on the explore prompt — not yet field-tested) | setup only: focus prompt file with the project's frame (scope as fallback), `Track:` line and focus sections in the profile templates, `PROFILE.md` and the setup skill name the focus stages and idea → build, bootstrap question-only exception — same contracts |
