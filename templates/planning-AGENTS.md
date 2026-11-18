@@ -34,11 +34,11 @@ planning/
   profile/                      this customer's constraints — read-only for you
   idea/                         explore: cards, evaluations, 10-shortlist.md (H1) · focus: frame, contributions, 10-register.md (register/1)
   maquette/<CODE>-<slug>/       one folder per maquette, 60-brief.md (H2) and vcode/ frozen after done
-  build/                        00-build.md, CONTEXT.md, decisions/, registers, <FEAT>/ per feature
+  build/                        00-build.md, CONTEXT.md, decisions/, agent-testing.md, manual-tests.md, cli.md, configuration.md, deployment.md, <FEAT>/ per feature
   _archive/                     old suite/profile versions after an update — never read, never delete
 ```
 
-Inside a skillset's files the workspace root `<suite>` is `planning/suite/<name>/` and the work root `<work>` is `planning/<name>/` (project layout, RULES §2 of each skillset). Product code (build only) lives in the project root outside `planning/`; `00-build.md` records the path.
+Inside a skillset's files the workspace root `<suite>` is `planning/suite/<name>/` and the work root `<work>` is `planning/<name>/` (project layout, RULES §2 of each skillset). Product code (build only) lives in the project root, a sibling of `planning/`, in the folder structure of the layout profile build's concept chose (build RULES §15); `00-build.md` records the code root and the profile. `planning/` is committed together with the code.
 
 ## Hard limits
 

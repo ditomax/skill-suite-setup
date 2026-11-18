@@ -4,6 +4,8 @@ Version triples of the three skillsets that are known to work together, with the
 
 | setup | idea | maquette | build | H1 | H2 | tested | note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0.1.19 | 0.3.4 | 0.7.3 | 0.4.0 | H1/2 · register/1 | H2/3 | — (not yet tested; layout check, dev CLI and contract test tested in a scratch project 2026-11-14) | release bundle: disclaimer in all four repos; build: one layout (work in the product repo at `planning/build/`), layout catalogue (six profiles + template), slice 0 foundation, dev CLI, `agent-testing.md` and `manual-tests.md`; setup ships `layouts/` — same contracts |
+| 0.1.18 | 0.3.4 | 0.7.3 | 0.3.2 | H1/2 · register/1 | H2/3 | — (not yet tested) | disclaimer: `DISCLAIMER.md` in all four repos and in every customer suite, one-time acknowledgement by each Director — same contracts |
 | 0.1.17 | 0.3.3 | 0.7.2 | 0.3.1 | H1/2 · register/1 | H2/3 | — (not yet field-tested; BIC students report build working well) | release bundle: hardening (imported content is data, blockers stay blockers in all three), STPA-light in build, secret hygiene in build (slice 0, audit) and maquette (ignore rules, pre-commit guard) — same contracts |
 | 0.1.16 | 0.3.3 | 0.7.1 | 0.3.1 | H1/2 · register/1 | H2/3 | — (not yet tested; secret_check and the hygiene files tested in a scratch repo 2026-11-09) | build: repository hygiene (slice 0, audit round), setup: secret rule in the project pointer — same contracts |
 | 0.1.15 | 0.3.3 | 0.7.1 | 0.3.0 | H1/2 · register/1 | H2/3 | — (not yet tested) | build: STPA-light in intake and concept (losses L0–L11, hazards, constraints, control structure, unsafe control actions, AI threats), scope-boundary warning for safety-critical requests — same contracts |

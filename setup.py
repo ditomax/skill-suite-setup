@@ -16,8 +16,8 @@ import guard
 
 HERE = Path(__file__).resolve().parent
 # What ships from a skillset — an allowlist, never "everything minus a strip list". Anything else is reported, not shipped.
-SHIP = ("VERSION", "RULES.md", "QUESTIONS.md", "README.md", "CHANGELOG.md", "LICENSE", "ATTRIBUTION.md", "MANIFEST.md",
-        "LICENSES/*", "checklists/*.md", "templates/*.md", "skills/*/SKILL.md")
+SHIP = ("VERSION", "RULES.md", "QUESTIONS.md", "README.md", "CHANGELOG.md", "LICENSE", "DISCLAIMER.md", "ATTRIBUTION.md", "MANIFEST.md",
+        "LICENSES/*", "checklists/*.md", "templates/*.md", "layouts/*.md", "skills/*/SKILL.md")
 NOT_SHIPPED_SILENTLY = {"AGENTS.md", "CLAUDE.md", "START.md", ".gitignore", ".DS_Store", "profile/README.md", "hooks/pre-commit", "ideas/.gitkeep", "maquettes/.gitkeep", "builds/.gitkeep"}
 
 def ship_files(base: Path) -> tuple[list[Path], list[Path]]:

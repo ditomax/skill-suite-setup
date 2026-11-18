@@ -15,7 +15,7 @@ Every Director reads `profile/profile.md` at every start and passes the files na
 | `it-constraints.md` | plan-board, maquette-build, build-concept, build-synthesis | allowed stacks and dependencies, hosting, "no network", data rules, where a prototype may run |
 | `design.md` | design-3 | corporate design tokens (typeface, colours, spacing); variants then differ in layout, density and flow |
 | `import-formats.md` | idea-collect | the customer's own card formats: columns → card fields (e.g. their xlsx export), encoding notes |
-| `conventions.md` | build-synthesis, build-rescue | coding conventions, repository layout, CI expectations, commit rules beyond RULES §6 |
+| `conventions.md` | build-concept (layout, C8), build-synthesis, build-rescue | coding conventions, repository layout (a build layout profile or a house layout — build RULES §15), CI expectations, commit rules beyond RULES §6 |
 | `review.md` | maquette Director (gate), build Director (gates) | who signs which gate, the customer's own review and release process, next-step options replacing the brief's defaults |
 
 ## `questions.md`

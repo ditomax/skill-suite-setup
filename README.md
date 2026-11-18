@@ -4,6 +4,8 @@
 
 Version: see `VERSION` · September 2026 · https://github.com/ditomax/skill-suite-setup
 
+**Disclaimer:** the skill suite is a set of guidelines — whoever runs it is responsible for inputs, outputs and decisions. See [`DISCLAIMER.md`](DISCLAIMER.md).
+
 This is the suite's setup tool. It takes the three skillset repos ([idea](https://github.com/ditomax/idea), [maquette](https://github.com/ditomax/maquette), [build](https://github.com/ditomax/build)) at pinned versions, adds a customer profile produced in a guided dialogue, and renders a delivery that the customer's IT unzips into a project folder. Nothing is installed or fetched at the customer; the agent reads `planning/AGENTS.md` / `planning/CLAUDE.md` when the folder is opened and acts as the right Director.
 
 Two kinds of users:
