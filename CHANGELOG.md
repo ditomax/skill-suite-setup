@@ -1,5 +1,8 @@
 # Changelog — skill-suite-setup
 
+## 0.1.20 — 2026-11-22
+- Compatibility row for idea 0.3.4 · maquette 0.7.3 · build 0.5.0 (error handling strategy).
+
 ## 0.1.19 — 2026-11-14
 - Customer suites ship build's new layout catalogue (`layouts/`).
 - The project pointer and the profile template `conventions.md` name the layout profile; `planning/` is committed with the code.
