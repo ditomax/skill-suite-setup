@@ -1,5 +1,8 @@
 # Changelog — skill-suite-setup
 
+## 0.1.22 — 2026-11-24
+- Compatibility row for idea 0.3.4 · maquette 0.7.3 · build 0.5.1 (build works without a local copy).
+
 ## 0.1.21 — 2026-11-24
 - New platform `claude-code`: start.md tells how to open the folder with Claude Code (CLI).
 
