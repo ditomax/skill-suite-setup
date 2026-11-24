@@ -4,6 +4,7 @@ Version triples of the three skillsets that are known to work together, with the
 
 | setup | idea | maquette | build | H1 | H2 | tested | note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0.1.21 | 0.3.4 | 0.7.3 | 0.5.0 | H1/2 · register/1 | H2/3 | — (not yet tested) | setup: platform hint for Claude Code (CLI) in start.md — same skillsets and contracts as 0.1.20 |
 | 0.1.20 | 0.3.4 | 0.7.3 | 0.5.0 | H1/2 · register/1 | H2/3 | — (not yet tested) | build: error handling strategy below STPA-light — constraint responses (detect · immediate action · remedy · time), outside actions in the control structure, reaction matrix after the architecture, new questions I13 and C15–C18, new loss L12; checklist `error-handling.md` ships via `checklists/*.md` — same contracts |
 | 0.1.19 | 0.3.4 | 0.7.3 | 0.4.0 | H1/2 · register/1 | H2/3 | — (not yet tested; layout check, dev CLI and contract test tested in a scratch project 2026-11-14) | release bundle: disclaimer in all four repos; build: one layout (work in the product repo at `planning/build/`), layout catalogue (six profiles + template), slice 0 foundation, dev CLI, `agent-testing.md` and `manual-tests.md`; setup ships `layouts/` — same contracts |
 | 0.1.18 | 0.3.4 | 0.7.3 | 0.3.2 | H1/2 · register/1 | H2/3 | — (not yet tested) | disclaimer: `DISCLAIMER.md` in all four repos and in every customer suite, one-time acknowledgement by each Director — same contracts |

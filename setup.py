@@ -34,12 +34,14 @@ PLATFORM_HINTS = {
         "cowork": "**Claude (Cowork):** new task → connect folder → select the folder. Claude reads `CLAUDE.md` automatically.",
         "chatgpt-codex": "**ChatGPT app (Codex mode):** \"Open project\" → select the folder. Codex reads `AGENTS.md` automatically.",
         "vibe-cli": "**Mistral Vibe CLI:** change into the folder in a terminal and start `vibe`. It reads `AGENTS.md` automatically.",
+        "claude-code": "**Claude Code (CLI):** change into the folder in a terminal and start `claude`. Claude Code reads `CLAUDE.md` automatically.",
         "other": "Open the folder in your AI app; it must be able to read and write files in it. Then say: \"Read AGENTS.md and begin.\"",
     },
     "de": {
         "cowork": "**Claude (Cowork):** neue Aufgabe → Ordner verbinden → den Ordner wählen. Claude liest `CLAUDE.md` automatisch.",
         "chatgpt-codex": "**ChatGPT-App (Codex-Modus):** „Projekt öffnen“ → den Ordner wählen. Codex liest `AGENTS.md` automatisch.",
         "vibe-cli": "**Mistral Vibe CLI:** im Terminal in den Ordner wechseln und `vibe` starten. Es liest `AGENTS.md` automatisch.",
+        "claude-code": "**Claude Code (CLI):** im Terminal in den Ordner wechseln und `claude` starten. Claude Code liest `CLAUDE.md` automatisch.",
         "other": "Öffnen Sie den Ordner in Ihrer KI-Anwendung; sie muss darin Dateien lesen und schreiben können. Dann sagen Sie: „Lies AGENTS.md und beginne.“",
     },
 }
